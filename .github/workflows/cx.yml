@@ -1,28 +1,61 @@
-name: cx
+
+name: Debugging Action
 
 on:
-  pull_request:
-    branches:
-      - master
   push:
     branches:
-      - master
-      
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  ast_scan:
+  debug-job:
     runs-on: ubuntu-latest
-    name: Checkmarx scan run
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Checkmarx AST CLI Action
-        uses: checkmarx/ast-github-action@main
-        with:
-          base_uri: https://ast.checkmarx.net/
-          cx_tenant: workshop
-          cx_client_id: ${{ secrets.CX_CLIENT_ID }}
-          cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
-          additional_params: --report-format json,sbom --report-sbom-format CycloneDxJson --output-name sean_results --output-path ./results/ --output-name sean_sbom --output-path ./results/
+      - name: Dummy Debug Step
+        run: |
+          echo "Starting debug step..."
+          echo "Debugging purpose: Print environment variables"
+          env
+
+      - name: Complete Debug Step
+        run: echo "Debugging step completed!"
+
+
+# name: cx
+
+# on:
+#   pull_request:
+#     branches:
+#       - master
+#   push:
+#     branches:
+#       - master
+      
+# jobs:
+#   ast_scan:
+#     runs-on: ubuntu-latest
+#     name: Checkmarx scan run
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+#    - name: Dummy Debug Step
+#       run: |
+#         echo "Starting debug step..."
+#         echo "Debugging purpose: Print environment variables"
+#         env
+#       # - name: Checkmarx AST CLI Action
+#       #   uses: checkmarx/ast-github-action@main
+#       #   with:
+#       #     base_uri: https://ast.checkmarx.net/
+#       #     cx_tenant: workshop
+#       #     cx_client_id: ${{ secrets.CX_CLIENT_ID }}
+#       #     cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
+#       #     additional_params: --report-format json,sbom --report-sbom-format CycloneDxJson --output-name sean_results --output-path ./results/ --output-name sean_sbom --output-path ./results/
           
