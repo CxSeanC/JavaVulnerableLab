@@ -20,6 +20,6 @@ jobs:
         uses: checkmarx/ast-github-action@main
         with:
           base_uri: https://us.ast.checkmarx.net/
-          cx_tenant: wiley
+          cx_tenant: workshop
           cx_api_key: ${{ secrets.CX_API_KEY }}
    
