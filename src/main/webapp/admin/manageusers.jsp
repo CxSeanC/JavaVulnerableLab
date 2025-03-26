@@ -10,7 +10,7 @@
     Statement stmt = con.createStatement(); 
  if(request.getParameter("delete")!=null)
  {
-     String user=request.getParameter("user");      
+     String user=request.getParameter();  "user"    
      stmt.executeUpdate("Delete from users where username='"+user+"'");                      
  }
  %>	
